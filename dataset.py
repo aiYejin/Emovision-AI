@@ -51,7 +51,7 @@ with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence
                     filename=f"{image_num}.jpg"
                     cv2.imwrite(filename, face_result)
 
-                    cv2.imshow('face_aligned', fac료e_result)
+                    cv2.imshow('face_aligned', face_result)
 
         cv2.imshow('frame', image)
 
