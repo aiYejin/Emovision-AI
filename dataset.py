@@ -46,17 +46,17 @@ with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence
                 face_result = face_aligned[111:367, 191:447]
 
                 frame_number+=1
-                if frame_number % 30 == 0:
+                if frame_number % 30 == 0: # 30 프레임 당 한 번
                     image_num+=1
                     filename=f"{image_num}.jpg"
                     cv2.imwrite(filename, face_result)
 
-                    cv2.imshow('face_aligned', face_result)
+                    cv2.imshow('face_aligned', fac료e_result)
 
         cv2.imshow('frame', image)
 
         # Exit the loop if 'q' is pressed
-        if cv2.waitKey(1) & 0xFF == ord('q') or image_num==100:
+        if cv2.waitKey(1) & 0xFF == ord('q') or image_num==100: # 100장 찍으면 종료
                 break
 
 # Release the webcam and close all windows
