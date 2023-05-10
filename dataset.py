@@ -33,7 +33,7 @@ with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence
                 
                 # Compute the transformation matrix using the keypoints
                 src_points = np.array([keypoints[0], keypoints[1], keypoints[2], keypoints[3]])
-                dst_points = np.array([(0.4,0.4), (0.6, 0.4), (0.5, 0.5), (0.5, 0.6)])
+                dst_points = np.array([(0.45,0.45), (0.55, 0.45), (0.5, 0.5), (0.5, 0.55)])
                 w, h = image.shape[1], image.shape[0]
                 src_points[:, 0] *= w
                 src_points[:, 1] *= h
@@ -43,10 +43,10 @@ with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence
 
                 # Apply the transformation to the face region
                 face_aligned = cv2.warpAffine(image, M, (0,0))
-                face_result = face_aligned[111:367, 191:447]
+                face_result = face_aligned[175:303, 255:383]
 
                 frame_number+=1
-                if frame_number % 30 == 0: # 30 프레임 당 한 번
+                if frame_number % 3 == 0: # 30 프레임 당 한 번
                     image_num+=1
                     filename=f"{image_num}.jpg"
                     cv2.imwrite(filename, face_result)
@@ -56,7 +56,7 @@ with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence
         cv2.imshow('frame', image)
 
         # Exit the loop if 'q' is pressed
-        if cv2.waitKey(1) & 0xFF == ord('q') or image_num==100: # 100장 찍으면 종료
+        if cv2.waitKey(1) & 0xFF == ord('q') or image_num==1000: # 100장 찍으면 종료
                 break
 
 # Release the webcam and close all windows

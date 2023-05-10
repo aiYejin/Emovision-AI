@@ -7,7 +7,7 @@ mp_face_detection = mp.solutions.face_detection
 face_detection = mp_face_detection.FaceDetection(min_detection_confidence=0.5, model_selection=1)
 
 # Initialize the webcam
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5) as face_detection:
     while cap.isOpened():
@@ -31,7 +31,7 @@ with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence
                 
                 # Compute the transformation matrix using the keypoints
                 src_points = np.array([keypoints[0], keypoints[1], keypoints[2], keypoints[3]])
-                dst_points = np.array([(0.4,0.4), (0.6, 0.4), (0.5, 0.5), (0.5, 0.6)])
+                dst_points = np.array([(0.45,0.45), (0.55, 0.45), (0.5, 0.5), (0.5, 0.55)])
                 w, h = image.shape[1], image.shape[0]
                 src_points[:, 0] *= w
                 src_points[:, 1] *= h
@@ -41,7 +41,7 @@ with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence
 
                 # Apply the transformation to the face region
                 face_aligned = cv2.warpAffine(image, M, (0,0))
-                face_result = face_aligned[111:367, 191:447]
+                face_result = face_aligned[175:303, 255:383]
 
                 # Show the aligned face
                 cv2.imshow('face_aligned', face_result)
