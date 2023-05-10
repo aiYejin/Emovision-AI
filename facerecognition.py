@@ -8,7 +8,7 @@ import numpy as np
 # 모델 불러오기
 model_path = 'my_model.h5'
 model = load_model(model_path)
-names=['gun','kyu','yejin']
+names=['eun','gun','kyu','yejin']
 
 # Initialize face detector
 mp_face_detection = mp.solutions.face_detection
