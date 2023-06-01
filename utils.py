@@ -23,8 +23,7 @@ def align(image, keypoints):
 def predict(model, face_result, names):
     predicted_probs = model.predict(face_result)[0]
     predicted_class = np.argmax(predicted_probs)
-
-    if predicted_probs[predicted_class] > 0.8 and names[predicted_class]!="others":
+    if predicted_probs[predicted_class] > 0.8 and (names[predicted_class]=='jin' or names[predicted_class]=='eun'):
         text = names[predicted_class]
         color = (0, 255, 0)
     # 얼굴 인식 결과가 학습한 인물이 아닌 경우
@@ -37,8 +36,13 @@ def predict(model, face_result, names):
 def emotion(model, face_result, emotions):
     predict_emotion = model.predict(face_result)[0]
     predicted_class = np.argmax(predict_emotion)
-    text = emotions[predicted_class]
-    color = (0, 0, 255)
+    print(predict_emotion[predicted_class])
+    if predict_emotion[predicted_class] > 0.8:
+        text = emotions[predicted_class]
+        color = (0, 0, 255)
+    else:
+        text = 'neutral'
+        color = (0, 0, 255)
     return text, color
 
 # 모델 로드
